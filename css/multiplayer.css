@@ -18,7 +18,7 @@ button {
 
 #PlayerName {
   height: 25px;
-  width: 270px;
+  width: 150px;
 }
 
 #start:enabled {
@@ -30,8 +30,8 @@ button {
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   image-rendering: -moz-crisp-edges;
-  width: 600px;
-  height: 600px;
+  width: 250px;
+  height: 250px;
 }
 
 #admin {
