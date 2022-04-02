@@ -184,12 +184,12 @@ function inicializaTela(gameInfo) {
     
   for (var i = 0; i < SUPABASE_PLAYER_TABLES.length; i++) {
     if (jogandoAgora.findIndex(x => x.INDEX == i) >= 0) {
-      infoText += "<button value ='" + i +"' id='sala" + i + "' disabled>Entrar na sala " + (i+1) + "</button> <div class='inline' id='n" + i + "'></div><br><br>";
+      infoText += "<button value ='" + i +"' id='sala" + i + "' disabled>Entrar na sala " + (i+1) + "</button><br>&nbsp; &nbsp; <div class='inline' id='n" + i + "'></div><br>";
     } else {
-      infoText += "<button value ='" + i +"' id='sala" + i + "'>Entrar na sala " + (i+1) + "</button> <div class='inline' id='n" + i + "'></div><br><br>";
+      infoText += "<button value ='" + i +"' id='sala" + i + "'>Entrar na sala " + (i+1) + "</button><br>&nbsp; &nbsp; <div class='inline' id='n" + i + "'></div><br>";
     }
   }
-  
+
   // Preenche informações iniciais das salas
   document.getElementById('salas').innerHTML = infoText; 
     
@@ -1127,7 +1127,7 @@ function renderScreen(screen, game, requestAnimationFrame, currentPlayerId) {
 
     for (const fruitId in game.state.fruits) {
         const fruit = game.state.fruits[fruitId]
-        context.fillStyle = 'orange'
+        context.fillStyle = 'lightblue'
         context.fillRect(fruit.x, fruit.y, 1, 1)
     }
 
