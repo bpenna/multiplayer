@@ -1,4 +1,4 @@
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+//import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
 // Para facilitar o debug
 const debugMode = false;
@@ -116,7 +116,8 @@ async function atualizaGameInfoNoBancoDeDados(gameInfo, roomIndex) {
 var GAME = createGame();
 
 // Inicializa cliente do Supabase (banco de dados atua como servidor)
-const _supa = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+//const _supa = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const _supa = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Inicializa as informações na criação da sessão
 consultaInfoSemIndice(SUPABASE_INFO_TABLE).then((gameInfo) => {
