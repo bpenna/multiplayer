@@ -13,12 +13,12 @@ button {
 }
 
 #start, #out {
-  width: 100px;
+  width: 110px;
 }
 
 #PlayerName {
   height: 25px;
-  width: 150px;
+  width: 160px;
 }
 
 #start:enabled {
