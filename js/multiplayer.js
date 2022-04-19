@@ -1,3 +1,6 @@
+////CÓDIGO FONTE ORIGINAL: 
+//https://github.com/filipedeschamps/meu-primeiro-jogo-multiplayer/tree/master/playground/1st-release/public
+
 //import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
 // Para facilitar o debug
@@ -127,7 +130,7 @@ consultaInfoSemIndice(SUPABASE_INFO_TABLE).then((gameInfo) => {
 
   // Monitora as tabelas do SUPABASE
   monitoraSupabase().then(() => {});
-
+  
   // Monitora o botão da sala e as teclas pressionadas pelo jogador
   monitoraTela();
 
@@ -189,7 +192,7 @@ function inicializaTela(gameInfo) {
       infoText += "<button value ='" + i +"' id='sala" + i + "'>Entrar na sala " + (i+1) + "</button><br>&nbsp; &nbsp; <div class='inline' id='n" + i + "'></div><br>";
     }
   }
-
+  
   // Preenche informações iniciais das salas
   document.getElementById('salas').innerHTML = infoText; 
     
@@ -198,6 +201,7 @@ function inicializaTela(gameInfo) {
     BOSS_IN_ROOMS[i] = gameInfo[gameInfo.findIndex(x => x.INDEX == i)].BOSS;
     consultaInfoComIndice(SUPABASE_PLAYER_TABLES[i], i).then(({data, indice}) => {
       NUM_PLAYERS_IN_ROOMS[indice] = data.length;
+      
       if (data.length == 1) {
         document.getElementById(`n${indice}`).innerHTML = new String(`${data.length} jogador`);
       } else {
@@ -209,7 +213,7 @@ function inicializaTela(gameInfo) {
 
 // Atualização das telas com as informações alteradas
 function atualizaTela(indice, quantidade) {
-          
+        
   if (quantidade == 1) {
     document.getElementById(`n${indice}`).innerHTML = new String(`${NUM_PLAYERS_IN_ROOMS[indice]} jogador`);
   } else {
@@ -226,7 +230,7 @@ async function monitoraSupabase() {
       // Caso tenha sido alterada alguma tabela de jogador (SUPABASE_PLAYER_TABLES)
       if (SUPABASE_PLAYER_TABLES.indexOf(payload.table) >= 0) {
         escutaTabelaJogador(payload); 
-        atualizaTela(SUPABASE_PLAYER_TABLES.indexOf(payload.table), data.length);
+        atualizaTela(SUPABASE_PLAYER_TABLES.indexOf(payload.table), NUM_PLAYERS_IN_ROOMS[SUPABASE_PLAYER_TABLES.indexOf(payload.table)]);
       }
       
       // Caso tenha sido alterada alguma tabela de inimigo (SUPABASE_ENEMY_TABLES)
@@ -241,7 +245,7 @@ async function monitoraSupabase() {
       
     })
     .subscribe()
-  
+    
     // Exibe os dados se estiver no modo debug (debugMode = true) 
     if (debugMode) {console.log("SUBSCRIPTION DATA: ", data.topic);}
   
@@ -250,7 +254,7 @@ async function monitoraSupabase() {
 
 // Define ações caso haja alguma alteração nas tabelas dos jogadores (INSERT, UPDATE, DELETE)
 function escutaTabelaJogador(payload) {
-
+  
   // Caso algum jogador tenha entrado em uma sala
   if (payload.eventType == "INSERT") {
               
@@ -1142,3 +1146,13 @@ function renderScreen(screen, game, requestAnimationFrame, currentPlayerId) {
         renderScreen(screen, game, requestAnimationFrame, currentPlayerId)
     })
 }
+
+  // Escuta se jogador saiu do navegador
+  //  window.onbeforeunload = saida;
+  //function saida(){
+  // alert ('ok1')
+  //}
+  // window.addEventListener('beforeunload',(event) =>{
+  //removeInfoNoBancoDeDados(SUPABASE_PLAYER_TABLES[CURRENT_PLAYER_ROOM], CURRENT_PLAYER_ID).then(() => {});
+  // criaJogador();
+  //});
